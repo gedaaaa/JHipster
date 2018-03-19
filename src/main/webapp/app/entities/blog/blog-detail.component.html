@@ -1,0 +1,42 @@
+
+<div *ngIf="blog">
+    <h2><span jhiTranslate="jHipsterApp.blog.detail.title">Blog</span> {{blog.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="jHipsterApp.blog.title">Title</span></dt>
+        <dd>
+            <span>{{blog.title}}</span>
+        </dd>
+        <dt><span jhiTranslate="jHipsterApp.blog.summary">Summary</span></dt>
+        <dd>
+            <span>{{blog.summary}}</span>
+        </dd>
+        <dt><span jhiTranslate="jHipsterApp.blog.content">Content</span></dt>
+        <dd>
+            <span>{{blog.content}}</span>
+        </dd>
+        <dt><span jhiTranslate="jHipsterApp.blog.create_at">Create At</span></dt>
+        <dd>
+            <span>{{blog.create_at | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="jHipsterApp.blog.written_by">Written By</span></dt>
+        <dd>
+            {{blog.written_by?.login}}
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'blog/'+ blog.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>
